@@ -1,7 +1,649 @@
 <html>
-	<head>
-	</head>
-	<body>
-		Project 1 here
-	</body>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:等线;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@DengXian";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:.5in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:.5in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal><a name="_Hlk95878812"></a><span style='font-size:20.0pt;
+line-height:107%;font-family:"Times New Roman",serif'>Project 1: Rasterizer</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Overview</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>In this project I learned how triangles are rasterized
+into a flat picture, as well as antialiasing techniques including
+supersampling, pixel sampling, and level sampling. Relative mathematic tools
+like matrix transformation and barycentric coordinates are also put into application
+in the meantime.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 1 Drawing Single-Color Triangles</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>How did I print those triangles?</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>I
+wrote two helper functions </span><span style='font-size:10.0pt;line-height:
+107%;font-family:"Courier New"'>line_test()</span><span style='font-size:12.0pt;
+line-height:107%;font-family:"Times New Roman",serif'> and </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>inside()</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>
+to determine if a point is inside a triangle. </span><span style='font-size:
+10.0pt;line-height:107%;font-family:"Courier New"'>line_test()</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>
+implements the line test function I learned in lecture 2. </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>inside()</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>
+determines if a point is inside the given triangle. During the implementation,
+I noticed that <i>line test</i> function taught in lecture works differently on
+clockwise vertices, compared to counterclockwise vertices. I had to do a small
+modification in my </span><span style='font-size:10.0pt;line-height:107%;
+font-family:"Courier New"'>inside()</span><span style='font-size:12.0pt;
+line-height:107%;font-family:"Times New Roman",serif'> function: if a point
+appears to be “outside” of every edge of a triangle, then it is actually inside
+the edges, where I can deduce the fact that edge must be in clockwise
+direction.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Equipped
+with </span><span style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>inside()</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>,
+I could intuitively traverse every single sample point in the rectangle that
+bounds the triangle to be rendered, check if the sample point is inside the
+triangle, and render it with the correct color. I tested this unoptimized
+algorithm on svg/basic/test4.svg and the time spent rendering it is 4.96ms.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='text-align:center'> <img
+width=189 height=94 id="Picture 4" src="writeup_files/image001.jpg"
+alt="Text, chat or text message&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>I
+came up with a slightly optimized algorithm – instead of traversing every
+sample point within a row, I stop scanning new sample points once a row is out
+of  “inside” points. Let me illustrate this by an example - consider a triangle
+like this:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>00000001000000000</span></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>00001111111000000</span></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>00111111111111100</span></p>
+
+<p class=MsoListParagraphCxSpMiddle><span style='font-size:12.0pt;line-height:
+107%;font-family:"Times New Roman",serif'>An obvious pattern of any triangle is
+that sample points inside the triangle are <b>consecutive</b>. I can simply
+stop sampling and begin from next row whenever I see an “outside” after seen
+some “inside” points in each row. Thus, instead of sampling every point, now I
+just sample some of them:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>00000001xxxxxxxxx</span></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>00001111111xxxxxx</span></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>001111111111111xx</span></p>
+
+<p class=MsoListParagraphCxSpMiddle><span style='font-size:12.0pt;line-height:
+107%;font-family:"Times New Roman",serif'>where “x” stands for points been
+skipped. This slightly optimized algorithm did slightly better on svg/basic/test4.svg
+and the time spent is 3.82ms, which is a 1.3x speedup. Note that in my actual
+implementation, the outer loop traverses x (columns) instead of y (rows). Thus,
+one should rotate the graph in my example by 90 degrees to get a taste of
+what’s happening in my code.</span></p>
+
+<p class=MsoListParagraphCxSpLast align=center style='text-align:center'><img
+width=178 height=91 id="Picture 2" src="writeup_files/image002.gif"
+alt="Graphical user interface, text, application, chat or text message&#10;&#10;Description automatically generated"> </p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Faster Algorithms possible?</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-family:
+Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Some
+thoughts: as I illustrated above, I can exploit the fact that sample points
+classified as “inside” are consecutive in a row/column. binary search might
+give a substantial speedup, worth a try (if time permits:’)).</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Snap time!</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>A
+png screenshot of basic/test4.svg with the default viewing parameters and with
+the pixel inspector centered on an interesting part of the scene (Hello,
+jaggies!):</span></p>
+
+<p class=MsoListParagraphCxSpLast align=center style='text-align:center'><img
+width=339 height=254 id="Picture 6" src="writeup_files/image003.jpg"
+alt="Shape&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 2 Antialiasing by Supersampling</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>What have I done? </span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>After
+20 minutes coding and 6 hours debugging (yikes!), the power of supersampling
+has eventually been achieved – every single pixel gets 4x more samples and a
+color on average is calculated. This averaged color is exactly the same as if
+no supersampling enabled if it’s far inside the triangle or if there’s no
+triangles surrounding it. However, if the pixel is on the edge of a triangle,
+colors on both sides of the edge get sampled altogether, and average color is
+used for that lucky pixel – supersampling and downsampling! This pixel with
+mixed color might look like a blur if one steps closer, but that’s intended – a
+blurred pixel looks better than a stair-like jaggy after all.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Why antialiasing? </span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Antialiasing
+is useful because it can eliminate jaggies, which is very nice because we don’t
+want jaggies on our screens. We cannot really flatten the jaggies on edges
+since pixels are atomic, but we can blur it to make jaggies seem to be
+flattened.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Wires and Gears inside the black box</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Let’s
+take 4x supersampling as an example. When I press “=” on my keyboard, </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>sample_rate</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>
+is changed to 4 in order to resize the </span><span style='font-size:10.0pt;
+line-height:107%;font-family:"Courier New"'>sample_buffer</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'> from
+800x600 to 1600x1200. All of these are done in drawrend.cpp.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>In
+</span><span style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>rasterize_triangle()</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>
+, I take four samples for every pixel. Each sample point has equal distance to
+its vertical/horizontal neighbors. Say, for pixel at [100,200], I will take 4
+samples at [100.25, 200.25], [100.75, 200.25], [100.25, 200.75], [100.75,
+200.75]. These samples will be saved in </span><span style='font-size:10.0pt;
+line-height:107%;font-family:"Courier New"'>sample_buffer</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>[400][200],
+[400][201], [401][200], [401][201], respectively. (yes, y-coordinates in the
+front).</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:14.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>resolve_to_framebuffer()</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>is
+the place I did downsampling: the 1600x1200 vector is converted to a 800x600
+vector, where every pixel is produced from a 2x2 tile of pixels in </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>sample_buffer</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>.
+In my example, the tile of 4 mentioned samples are backfilled into a pixel at
+[100, 200]. That’s basically how it works!</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:14.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Ps:
+There are also two functions needed to be modified – </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;text-indent:-.25in'><a
+name="_Hlk95881087"><span style='font-size:14.0pt;line-height:107%;font-family:
+"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>set_framebuffer_target()</span></a><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>is
+called whenever the user (the very infamous exploiter of every software) change
+the size of the display window. This function resize the </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>sample_buffer</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>
+so that user’s resize command won’t break anything.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-size:14.0pt;line-height:107%;font-family:"Courier New"'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>fill_pixel()</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>
+is used to rasterize lines and points. I can just bypass this function whenever
+I rasterize a triangle. To get around with the case that supersampling is
+enabled, I modified it so that a 2x2 (or 3x3, exactly the sample rate) is now
+rendered at a time, based on the color of the center point of that pixel. This
+modification bypassed supersampling schemes, and the lines and dots look the
+same as before!</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show time!</span></p>
+
+<p class=MsoNormal><img width=292 height=284 id="Picture 7"
+src="writeup_files/image004.jpg"><img width=314 height=285 id="Picture 8"
+src="writeup_files/image005.jpg"
+alt="Shape&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><img width=302 height=286 id="Picture 9"
+src="writeup_files/image006.jpg"><img width=306 height=285 id="Picture 10"
+src="writeup_files/image007.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>(left to right, top to bottom: supersampling disabled,
+4x, 9x, 16x supersampling enabled)</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 3 Transforms</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>What have I done? </span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+14.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>I
+just reviewed the transform matrices in lecture 4 slide and pasted them back to
+transform.cpp. Here is the cubeman: </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><img width=491
+height=369 id="Picture 11" src="writeup_files/image008.jpg"
+alt="Chart&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Cubeman art</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>I
+did some modifications on robot.svg to create something funny:</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><img width=503
+height=378 id="Picture 12" src="writeup_files/image009.jpg"
+alt="Shape, arrow&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>I
+rotate cubeman’s arms, upper legs, and lower legs in different directions. The
+cubeman is now waving and running. Note that rotation should be done after
+scaling, otherwise the triangles will lose their original “shapes”, in which
+those arm boxes become arm “parallelograms”. Just like we see in the lecture –
+transform or<a name="_Hlk95945398">dering matters.</a></span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 4 <a name="_Hlk96022865">Barycentric coordinates</a></span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>What have I done? </span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>I
+borrowed the implementation from </span><span style='font-size:10.0pt;
+line-height:107%;font-family:"Courier New"'>rasterize_triangle()</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>.
+Instead of assigning the sample point a single color like I did in Task
+1&amp;2, a mixed color is calculated based on the relative distance from each edge.
+Take this right triangle as an example: </span></p>
+
+<p class=MsoNormal align=center style='margin-left:.25in;text-align:center'><img
+width=498 height=374 id="Picture 14" src="writeup_files/image010.jpg"
+alt="Chart, funnel chart&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Every
+triangle gets three variables (alpha, beta, gamma range from 0 to 1) called
+barycentric coordinates, which basically measure the relative distance from a
+point to its edges. Each variable gets a color. the further a sample point gets
+from an edge, the more percentage of its color will be added in the point’s sample
+buffer.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>For
+example, let’s say alpha accounts for the distance from hypotenuse to the
+sample point. If the sample point is on the top left vertex, the distance from
+sample point to the hypotenuse is maximized, and the value of alpha is 1. Since
+the sample point is now on the other two edges, the values of beta and gamma
+are naturally 0. Thus, this sample point gets red color only. In the other
+hand, take a look at some random points around the center of the triangle.
+That’s where alpha, beta, and gamma stay around 1/3 and all the three color get
+mixed together.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>A
+mathematical way of understanding alpha, beta, and gamma is – consider a helper
+triangle constructed by a sample point and two of the original vertices. The
+percentage of area occupied by this helper triangle is defined as one of alpha,
+beta, gamma, whatever assigned to account for that unused original vertex. This
+alterative definition also explains why alpha, beta, gamma sums to 1 – three
+helper triangles could be pieced together to the original triangles, think
+about connecting the sample points to three vertices. Therefore, we could
+immediately derive the any one letter’s value given the other two’s values.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show time!</span></p>
+
+<p class=MsoNormal><img width=624 height=468 id="Picture 13"
+src="writeup_files/image011.jpg"
+alt="Chart, pie chart, circle&#10;&#10;Description automatically generated with medium confidence"></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 5 &quot;Pixel sampling&quot; for texture mapping</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>What have I done?</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Texture
+mapping is essentially sampling colors from another rasterized triangle rather
+than a single color (done in Task 1) or three-color barycentric coordinates (done
+in Task 4). The formal language for that “another rasterized triangle” is actually
+an image containing desired texture.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Similar
+to task 4, I just derive alpha, beta, gamma values for each sample point in </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>sample_buffer</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>.
+Here goes the big idea: instead of assigning a color based on the three
+parameters, now I find a mapping on the texture image where points on that
+mapping have the same alpha, beta, gamma values (note that only a triangle has
+barycentric coordinates; the triangle being rendered needs to specify three
+vertices on the texture image so I can find a mapping for it). Then I take
+samples from the mapping and assign them backs to the </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>sample_buffer</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Since
+a texture image is just rasterized pixels (at least it’s true in our test
+example), here we got two ways of sampling. Nearest pixel sampling takes the
+color of the nearest pixel’s color, while bilinear pixel interpolation sampling
+takes colors from four nearest pixels, horizontally <a name="_Hlk96025135">interpolates
+</a>them into two colors, then vertically interpolates them again into one
+final color good to use.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show time!</span></p>
+
+<p class=MsoNormal><img width=624 height=469 id="Picture 15"
+src="writeup_files/image012.jpg"
+alt="Diagram&#10;&#10;Description automatically generated with medium confidence"><img
+width=624 height=469 id="Picture 16" src="writeup_files/image013.jpg"
+alt="Diagram&#10;&#10;Description automatically generated with medium confidence"><img
+width=624 height=469 id="Picture 17" src="writeup_files/image014.jpg"
+alt="Diagram&#10;&#10;Description automatically generated with medium confidence"><img
+width=620 height=466 id="Picture 18" src="writeup_files/image015.jpg"
+alt="Diagram&#10;&#10;Description automatically generated with low confidence"></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>(From top to bottom, left to right: nearest sampling 1x, bilinear
+sampling 1x, nearest sampling 16x, bilinear sampling 16x)</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Take
+a look at the longitude line near the west Africa, where bilinear sampling
+clearly defeats nearest sampling in all sample rates. The lines rendered by
+nearest sampling become discontinued and full of jaggies. By contrast, bilinear
+sampling gives smoother lines by slightly blurring the edges.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Why different?</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Nearest
+sampling and bilinear sampling perform differently when there is a very skinny diagonal
+thread. Bilinear sampling works better in such situation because it accounts
+for the neighbor pixels and produces a smoother edge. Bilinear sampling takes
+more samples than nearest sampling and gets a weighted average color. The idea
+of finding average in bilinear is kind of similar to supersampling but it happens
+to the texture image.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 6 &quot;Level sampling&quot; with mipmaps for
+texture mapping</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>What is level sampling?</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Level
+sampling is the use of different levels of sample “density” while rendering a
+single triangle/image based on how much “texture space” is inside a pixel. When
+I use level sampling to render a pixel close to the camera, the rasterizer
+prefers to take just enough samples for it. However, when I try to use level
+sampling to render a pixel far from the camera, the rasterizer prefers to take
+increasingly more samples, polynomial increase specifically (O(n^2)). This is
+because further pixels (typically maps to a relatively larger texture image)
+are vulnerable to aliasing. The idea behind level sampling is just sampling
+more on further pixels (exactly same as supersampling here) rather than closer
+ones. By doing this trick, we save graphic resources while achieving our
+antialiasing goal.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>What have I done?</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>In
+my opinion, the spec of this part goes like a hand-by-hand manual rather than a
+project to-do list.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>First,
+I converted (x,y) in frame coordinates to (alpha, beta, gamma) in barycentric
+coordinates, then to (u,v) in texture coordinates, with the same technique as I
+did in Task 5. Now is the interesting point: I repeated such conversion twice
+on (x+1,y) and (x,y+1). What I did is calculating the derivatives as the spec
+asked. Then, I plugged in the derivatives in the formula of mipmap level, with
+the help of </span><span style='font-size:10.0pt;line-height:107%;font-family:
+"Courier New"'>SampleParams</span><span style='font-size:12.0pt;line-height:
+107%;font-family:"Times New Roman",serif'>. In my language I would call that
+level as “sampling magnitude”, in which higher level means more samples are
+interpolated to compute a single pixel in order to make it smoother (actually
+blurring, but we call it acceptable antialiasing).</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Comparison between three types of sampling mode</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Supersampling:
+slow, high memory usage, best antialiasing</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Pixel
+sampling: fast, small memory usage, good antialiasing</span></p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Level
+sampling: medium speed, relatively small memory usage, very good antialiasing</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show time!</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'> L_ZERO and P_NEAREST: (Aliasing everywhere)</span></p>
+
+<p class=MsoNormal><img width=624 height=468 id="Picture 1"
+src="writeup_files/image016.jpg"
+alt="A picture containing text&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>L_ZERO and P_LINEAR (better, but still a few jaggies
+in the waves; smooth horizon line)</span></p>
+
+<p class=MsoNormal><img width=624 height=468 id="Picture 3"
+src="writeup_files/image017.jpg"
+alt="A picture containing text&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>L_NEAREST and P_NEAREST: (somewhat better than L_ZERO
+and P_NEAREST but worth than the picture above; horizon line gets a ton of
+jaggies)</span></p>
+
+<p class=MsoNormal><img width=624 height=468 id="Picture 20"
+src="writeup_files/image018.jpg"
+alt="A picture containing text&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>L_NEAREST and P_LINEAR (best partner with best
+performance (out of four), smooth everywhere, instead of the margin of the
+photo. Can be resolved by supersampling).</span></p>
+
+<p class=MsoNormal><img width=624 height=468 id="Picture 19"
+src="writeup_files/image019.jpg"
+alt="A picture containing graphical user interface&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
 </html>
