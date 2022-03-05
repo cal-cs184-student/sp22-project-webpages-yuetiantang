@@ -1,7 +1,579 @@
 <html>
-	<head>
-	</head>
-	<body>
-		Project 2 here
-	</body>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:等线;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@等线";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:.5in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:.5in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal><a name="_Hlk95878812"></a><span style='font-size:20.0pt;
+line-height:107%;font-family:"Times New Roman",serif'>Project 2: MeshEdit</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Overview</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>////In part 1 I learned how data define Bezier curves
+and Bezier surfaces, as well as rendering techniques known as interpolation. In
+part 2 I learned how to deal with a mesh of triangles, including operations
+like area-weighted vertex normals, flipping, splitting, and loop subdivision
+for mesh upsampling.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 1 Bezier Curves with 1D de Casteljau Subdivision</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Briefly explain de Casteljau's algorithm and how you
+implemented it in order to evaluate Bezier curves</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>De
+Casteljau's algorithm recursively determines a parametrized point based on each
+line segment in a polygonal chain. Eventually this algorithm will generate a
+new curve-like polygonal chain of parameterized points. A smaller parameter
+step will create more parameterized points, and the final curve will become
+smoother as a result.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Take a look at the provided .bzc files and create your
+own Bezier curve with 6 control points of your choosing. Use this Bezier curve
+for your screenshots below</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>My
+own Bezier curve file:</span></p>
+
+<p class=MsoListParagraphCxSpLast><img width=420 height=58 id="Picture 5"
+src="index_files/image001.gif"
+alt="A picture containing shape&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show screenshots of each step / level of the
+evaluation from the original control points down to the final evaluated point</span></p>
+
+<p class=MsoNormal><img width=486 height=325 id="Picture 22"
+src="index_files/image002.gif"
+alt="A picture containing diagram&#10;&#10;Description automatically generated"><img
+width=486 height=326 id="Picture 23" src="index_files/image003.gif"
+alt="Radar chart&#10;&#10;Description automatically generated with medium confidence"><img
+width=485 height=326 id="Picture 24" src="index_files/image004.gif"
+alt="A picture containing diagram&#10;&#10;Description automatically generated"><img
+width=480 height=322 id="Picture 25" src="index_files/image005.gif"
+alt="Diagram&#10;&#10;Description automatically generated with medium confidence"><img
+width=481 height=322 id="Picture 26" src="index_files/image006.gif"
+alt="Diagram&#10;&#10;Description automatically generated with medium confidence"><img
+width=484 height=321 id="Picture 21" src="index_files/image007.gif"
+alt="A picture containing diagram&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show a screenshot of a slightly different Bezier curve
+by moving the original control points around and modifying the parameter t via
+mouse scrolling</span><img width=488 height=322 id="Picture 29"
+src="index_files/image008.jpg"
+alt="A picture containing diagram&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 2 Bezier Surfaces with Separable 1D de Casteljau</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Briefly explain how de Casteljau algorithm extends to
+Bezier surfaces and how you implemented it in order to evaluate Bezier surfaces</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>For
+Bezier surfaces, the control points consist of a “2D” vector of  Vector3D. What
+I did is, first reduce the “2D” vector of  Vector3D into an “1D” vector of 
+Vector3D by applying de Casteljau's algorithm on every 1D row of the “2D”
+vector of Vector3D. I stored the results in a vector of  Vector3D, which are intermediate
+control points determined by the first pass of de Casteljau's algorithm. Then,
+I run de Casteljau's algorithm on these intermediate control points. The final
+result will be a single point on the desired Bezier Surface. Repeating all of
+these with a range of  parameter pair (u, v), I am able to draw a Bezier
+Surface using de Casteljau's algorithm. The #91 slide of lecture 7 is a great
+illustration of this algorithm, and it helps a lot during implementation.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show a screenshot of bez/teapot.bez (not .dae)
+evaluated by your implementation. </span></p>
+
+<p class=MsoNormal><img width=621 height=413 id="Picture 4"
+src="index_files/image009.gif"><img width=618 height=412 id="Picture 2"
+src="index_files/image010.gif"></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 3 Area-Weighted Vertex Normals</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Briefly explain how you implemented the area-weighted
+vertex normals.</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>To
+implement the area-weighted vertex normals, I traversed the half edges that go
+towards the given vertex (fetch <span style='font-size:10.0pt;font-family:"Courier New"'>next()-&gt;twin()</span>).
+For, I find the normal vectors of faces bounded by every half edge I traversed.
+Then, I summed up those normal vectors (no need to normalize because the vector
+from <span style='font-size:10.0pt;font-family:"Courier New"'>Face.normal()</span>
+is already scaled based on the triangle’s area) to make sure they are area-weighted.
+Finally, I normalize the sum at the very end so that the average output of the
+function is still a unit vector.</p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>One
+thing once really confused me: <span style='font-size:10.0pt;font-family:"Courier New"'>Face.normal()</span>
+returns a normal vector which is right to the surface of the <span
+style='font-size:10.0pt;font-family:"Courier New"'>Face</span>. This vector is
+not necessarily a unit vector.</p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show screenshots of dae/teapot.dae (not .bez)
+comparing teapot shading with and without vertex normals. Use Q to toggle
+default flat shading and Phong shading.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'><img width=659 height=442 id="Picture 6"
+src="index_files/image011.gif"><img width=671 height=443 id="Picture 27"
+src="index_files/image012.gif"></span></p>
+
+<p class=MsoNormal><img width=658 height=436 id="Picture 30"
+src="index_files/image013.gif"
+alt="A picture containing kitchenware, pot&#10;&#10;Description automatically generated"> <img
+width=656 height=435 id="Picture 31" src="index_files/image014.gif"
+alt="A teapot with a handle&#10;&#10;Description automatically generated with medium confidence"></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 4 Edge Flip</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Briefly explain how you implemented the edge flip
+operation and describe any interesting implementation / debugging tricks you
+have used.</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><a
+name="_Hlk97240293"><span style='font-size:12.0pt;line-height:107%;font-family:
+Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>I
+started with declaring some temporary pointers in order to modify every data
+structs involved in edge flip operation. I need pointers of 4 vertices, 6 half
+edges, and 2 faces at the least. Note that I do not need pointers of edges
+because my implementation does not edit them. The edge being flipped will
+remain untouched. Only two half edges of the flipped edge are modified.  I use
+this text diagram to show what is needed in this operation.</span></a></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><a
+name="_Hlk97229042"><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>0----------&gt;1</span></a></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>A\
+             |</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>|
+       \        |</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>|        
+     \ V</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>3&lt;----------2</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Here
+I use A for up arrow and V for down arrow. 0, 1, 2, 3 are four vertices
+involved. I only need half edges 01, 12, 23, 30, because other half edges such
+as 10, 21, 32, 03 do not belong to faces involved, which are </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>face_012</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>
+and </span><span style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>face_023</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>.
+The diagonal line is two half edges to be flipped. I want them connecting
+vertices 1 and 3 after the operation.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>I
+used </span><span style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>setNeighbors()</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>
+to change half edge 02’s next half edge from 23 to 12.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>I
+changed half edge 02’s next half edge from 23 to 12. I changed its starting
+vertex from 0 to 3. Thus, </span><span style='font-size:10.0pt;line-height:
+107%;font-family:"Courier New"'>face_023</span><span style='font-size:12.0pt;
+line-height:107%;font-family:"Times New Roman",serif'>  does not make sense now
+and should be called “</span><span style='font-size:10.0pt;line-height:107%;
+font-family:"Courier New"'>face_123</span><span style='font-size:12.0pt;
+line-height:107%;font-family:"Times New Roman",serif'>”, later I changed its
+half edge to edge 31 (used to be 02, the half edge we just flipped), just to be
+safe.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>For
+the twin half edge of 02, I changed half edge 20’s next half edge from 01 to 30.
+I changed its starting vertex from 2 to 1. Thus, </span><span style='font-size:
+10.0pt;line-height:107%;font-family:"Courier New"'>face_012</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'> 
+does not make sense now and should be called “</span><span style='font-size:
+10.0pt;line-height:107%;font-family:"Courier New"'>face_013</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>”,
+later I changed its half edge to edge 13 (used to be 20, the half edge we just
+flipped), just to be safe.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Finally,
+I modified the half edge pointer of each one of the vertices 0, 1, 2, 3, as
+well as the faces, to make sure they are consistent with the new structure of
+data:  </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>0----------&gt;1</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>A
+          /   |</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>|       
+/        |</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>| 
+/             V</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>3&lt;----------2</span></p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>No
+edges are modified during the whole process.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show screenshots of the teapot before and after some
+edge flips.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'><img width=638 height=422 id="Picture 11"
+src="index_files/image015.gif"><img width=635 height=422 id="Picture 12"
+src="index_files/image016.gif"></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 5 Edge Split</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Briefly explain how you implemented the edge split
+operation and describe any interesting implementation / debugging tricks you
+have used.</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>The
+initialization is quite similar to task4 - I started with declaring some
+temporary pointers in order to modify data structs involved in edge split
+operation. Likewise, I fetched 4 vertices, 6 half edges, and 2 faces. However,
+for this task I need to create something new: 1 new vertex, 6 new half edges, 3
+new edges, 2 new faces. I use this text diagram to show what is needed in this
+operation.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>0----------&gt;1</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>A\         
+    |</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>|
+       \        |</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>|        
+     \ V</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>3&lt;----------2</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>The
+mesh structure after the split should look like this:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>0----------&gt;1</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>A\         
+  / |</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>|
+       4       |</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>|  
+/          \ V</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:.75in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>3&lt;----------2</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>            where every single triangle is clockwise. </span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>Here
+is the detailed list of steps:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>1.
+For each half edge in the diagram (12 half edges in total: 01, 12, 23, 30, 04,
+40, 14, 41, 24, 42, 34, 43), I used </span><span style='font-size:10.0pt;
+line-height:107%;font-family:"Courier New"'>setNeighbors()</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>
+to redirect the pointers to correct objects. For example, half edge 40 should
+have [next=01, twin=04, vertex=4, edge=04, face=014]. Since half edge 40 was 20
+before the split, I should not create a new edge/face for it.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>2.
+For other simpler objects (5 vertices, 4 edges, 4 faces, 13 in total), simply
+correct their </span><span style='font-size:10.0pt;line-height:107%;font-family:
+"Courier New"'>halfedge()</span><span style='font-size:12.0pt;line-height:107%;
+font-family:"Times New Roman",serif'>field. For example, the new vertex #4
+should have its </span><span style='font-size:10.0pt;line-height:107%;
+font-family:"Courier New"'>halfedge()</span><span style='font-size:12.0pt;
+line-height:107%;font-family:"Times New Roman",serif'> pointer pointing to one
+of [40, 41, 42, 43].</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show screenshots of a mesh before and after some edge
+splits.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'><img width=628 height=416 id="Picture 13"
+src="index_files/image017.gif"><img width=624 height=416 id="Picture 14"
+src="index_files/image018.gif"></span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Show screenshots of a mesh before and after a
+combination of both edge splits and edge flips.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'><img width=637 height=422 id="Picture 28"
+src="index_files/image019.gif"><img width=645 height=422 id="Picture 32"
+src="index_files/image020.gif"></span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Write about your eventful debugging journey, if you
+have experienced one.</span></p>
+
+<p class=MsoListParagraph style='text-indent:-.25in'><span style='font-size:
+12.0pt;line-height:107%;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>When
+I initialized the new vertex, I forgot to specify its position. As a result,
+the split operation generates holes on the surface of the teapot. Even worse,
+the edge been split “goes into” the center of the teapot. I guess it’s because
+the new vertex just been created is in default at the center of the teapot.</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Task 6 Loop Subdivision for Mesh Upsampling</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Briefly explain how you implemented the loop
+subdivision and describe any interesting implementation / debugging tricks you
+have used.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>I take the hint from the skeleton code:</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>1. I used loop subdivision rule to get new positions for
+old vertices and stored them in </span><span style='font-size:10.0pt;
+line-height:107%;font-family:"Courier New"'>Vertex:newPosition</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'>.
+Then I calculated the positions of new vertices created by split, storing in </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>Edge:newPosition.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>2. I traversed all edges and split them into two edges.
+I used </span><span style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>Edge:isNew</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'> to
+avoid infinite loop. Then I check each edge to see if they need a flip – such
+edges are freshly created (not on an old edge) and connect an old vertex and a
+new vertex. I also introduced a new instance variable </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>Edge:isOnOriginalEdge</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'> in
+order to skip original edges that should never be flipped.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>3. Finally, I updated the positions of all edges and
+vertices. I also didn’t forget to assign all vertices and edges’ </span><span
+style='font-size:10.0pt;line-height:107%;font-family:"Courier New"'>isNew</span><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman",serif'> field
+to be false. All edges’ </span><span style='font-size:10.0pt;line-height:107%;
+font-family:"Courier New"'>Edge:isOnOriginalEdge</span><span style='font-size:
+12.0pt;line-height:107%;font-family:"Times New Roman",serif'> should become true
+now.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Some interesting bugs I encountered before I
+introduced </span><span style='font-size:10.0pt;line-height:107%;font-family:
+"Courier New"'>Edge:isOnOriginalEdge</span><span style='font-size:12.0pt;
+line-height:107%;font-family:"Times New Roman",serif'>:</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;line-height:107%;font-family:
+"Courier New"'><img width=506 height=336 id="Picture 1"
+src="index_files/image021.gif"></span> <img width=508 height=338 id="Picture 3"
+src="index_files/image022.gif"
+alt="A picture containing pot, kitchenware, ceramic ware, porcelain&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>After dedicated debugging:</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'><img width=650 height=434 id="Picture 7"
+src="index_files/image023.gif"><img width=660 height=436 id="Picture 8"
+src="index_files/image024.gif"></span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>What happens to sharp corners and edges? Can you
+reduce this effect by pre-splitting some edges?</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>The sharp corners and edges (like, the spout) are not
+sufficiently smooth compared to other parts of the teapot. Pre-splitting could
+help reduce this effect.</span></p>
+
+<p class=MsoNormal><img width=684 height=457 id="Picture 9"
+src="index_files/image025.gif"
+alt="A picture containing indoor, black, kitchenware, pot&#10;&#10;Description automatically generated"><img
+width=684 height=457 id="Picture 10" src="index_files/image026.gif"
+alt="A picture containing indoor, black, kitchenware, pot&#10;&#10;Description automatically generated"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:107%;font-family:
+"Times New Roman",serif'>Load dae/cube.dae. Perform several iterations of loop
+subdivision on the cube. Notice that the cube becomes slightly asymmetric after
+repeated subdivisions. Can you pre-process the cube with edge flips and splits
+so that the cube subdivides symmetrically? Document these effects and explain
+why they occur. Also explain how your pre-processing helps alleviate the
+effects.</span></p>
+
+<p class=MsoNormal><img width=657 height=439 id="Picture 15"
+src="index_files/image027.jpg" alt="Shape&#10;&#10;Description automatically generated"><img
+width=674 height=444 id="Picture 16" src="index_files/image028.gif"> <img
+width=668 height=446 id="Picture 17" src="index_files/image029.gif"
+alt="A picture containing shape&#10;&#10;Description automatically generated"></p>
+
+</div>
+
+</body>
+
 </html>
